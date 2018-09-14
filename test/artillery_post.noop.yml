@@ -1,0 +1,16 @@
+config:
+  target: "http://localhost:8000"
+  phases:
+    - duration: 30
+      arrivalRate: 600
+  defaults:
+    headers:
+      x-my-service-auth: "987401838271002188298567"
+scenarios:
+  - name: "Save Note"
+    flow:
+      - post:
+          url: "/noop"
+          form:
+            title: "{{  $randomString() }}"
+            body: "{{ $randomString() }}"

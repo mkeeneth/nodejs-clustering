@@ -1,6 +1,12 @@
 // note_routes.js
 
 module.exports = function(app, db) {
+  app.post("/noop", (req, res) => {
+    // just return, for raw throughput testing
+    res.status(202);
+    res.send({ noop: true }).end();
+  });
+
   app.post("/notes", (req, res) => {
     const note = { text: req.body.body, title: req.body.title };
     const sql = "INSERT INTO notes (title, body) VALUES (?,?)";
